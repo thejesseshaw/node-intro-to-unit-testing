@@ -25,11 +25,11 @@ describe('adder', function() {
 
   it('should raise error if args not numbers', function() {
     // range of bad inputs where not both are numbers
-    const badInputs = ["a", "y", bad];
+    const badInputs = ["a", "y", b];
     // prove that an error is raised for bad inputs
     badInputs.forEach(function(input) {
       (function() {
-          adder(input[0])
+          adder(input[0], input[1])
       }).should.throw(Error);
     });
   });

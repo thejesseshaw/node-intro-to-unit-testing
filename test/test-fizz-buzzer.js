@@ -1,34 +1,38 @@
 const should = require('chai').should();
 
-const fizzbuzz = require('../fizzBuzzer');
+const fizzBuzzer = require('../fizzBuzzer');
 
-describe('fizzbuzz', function() {
-	//Test the normal case
-	it('Should call the appropriate output', function() {
-		const normalCases = [
-		{a: 15, expected: "fizz-buzz"},
-		{a: 5, expected: "buzz"},
-		{a: 6, expected: "fizz"},
-		{a: 7, expected: 7}
-		];
-	//normal cases
-	 normalCases.forEach(function(input) {
-      const answer = fizzbuzz(input.a);
-      answer.should.equal(input.expected);
+describe('fizzBuzzer', function() {
+
+  it('should return "fizz-buzz" for multiples of 15', function() {
+    [15, 30, 45].forEach(function(input) {
+      fizzBuzzer(input).should.equal('fizz-buzz');
     });
-	})
+  });
 
-	 it('should raise error if args not numbers', function() {
-    // range of bad inputs where not both are numbers
-    const badInputs = [
-      ['a', 1],
-      ['1', 2],
-      [2, false]
-    ];
-    // prove that an error is raised for bad inputs
+  it('should return "fizz" for multiples of 3', function() {
+    [3, 6, 9, 12].forEach(function(input) {
+      fizzBuzzer(input).should.equal('fizz');
+    });
+  });
+
+  it('should return "buzz" for multiples of 5', function() {
+    [5, 10, 20].forEach(function(input) {
+      fizzBuzzer(input).should.equal('buzz');
+    });
+  });
+
+  it('should return number if not mult of 3 or 5', function() {
+    [1, 2, 4, 7].forEach(function(input) {
+      fizzBuzzer(input).should.equal(input);
+    });
+  });
+
+  it('should produce error if input isn\'t number', function() {
+    const badInputs = [true, false, 'cat', function() {}, [1, 2, 3]]
     badInputs.forEach(function(input) {
       (function() {
-          adder(input[0], input[1])
+          fizzBuzzer(input)
       }).should.throw(Error);
     });
   });
